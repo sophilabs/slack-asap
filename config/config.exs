@@ -28,3 +28,6 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :slack_asap, token: "K8HPzzr1WNX1i9teVoePOVIQ"
+config :slack_asap, port: 4000

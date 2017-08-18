@@ -14,8 +14,9 @@ defmodule SlackAsap.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      applications: [:cowboy, :plug]
-      extra_applications: [:logger]
+      applications: [:cowboy, :plug],
+      extra_applications: [:logger],
+      mod: {SlackAsap, [ start_server: Mix.env != :test ]}
     ]
   end
 
@@ -23,7 +24,8 @@ defmodule SlackAsap.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0.0"},
-      {:plug, "~> 1.0"}
+      {:plug, "~> 1.0"},
+      {:poison, "~> 3.1"}
     ]
   end
 end
