@@ -25,7 +25,8 @@ defmodule SlackAsap.Mixfile do
     [
       {:cowboy, "~> 1.0.0"},
       {:plug, "~> 1.0"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:ex_twilio, "~> 0.4.0"}
     ]
   end
 end

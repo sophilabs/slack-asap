@@ -29,5 +29,13 @@ use Mix.Config
 #
 #     import_config "#{Mix.env}.exs"
 
-config :slack_asap, token: "K8HPzzr1WNX1i9teVoePOVIQ"
-config :slack_asap, port: 4000
+config :slack_asap, token: "K8HPzzr1WNX1i9teVoePOVIQ",
+                    port: 4000,
+                    notifiers: [
+                      SlackAsap.TwilioSMS,
+                      SlackAsap.SlackMessage,
+                      SlackAsap.BambooEmail
+                    ]
+
+config :ex_twilio, account_sid: {:system, "AC5584aa7573024a2e62a4e9046d78ed04"},
+                   auth_token: {:system, "497f1399531c5edaea91ffc84484d86b"}

@@ -1,41 +1,31 @@
 defmodule SlackAsap.Command do
-  defp put_text([status, message], text),
-    do: [status, Map.put(message, "text", text)]
+  import SlackAsap.Message
 
-  def put_type([:ok, message]),
-    do: [:ok, Map.put(message, "response_type", "ephemeral")]
-
-  def put_type([_, message]),
-      do: [:fail, message]
-
-  def verify_token([:ok, message]) do
-    if message["token"] == Application.get_env(:slack_asap, :token) do
-      [:ok, message]
+  def notifier_handle_message([handler | t], message) do
+    if is_ok? message do
+      notifier_handle_message(t, handler.handle(message))
     else
-      put_text([:fail, message], "token validation failed")
+      message
     end
   end
 
-  def verify_token([_, message]) do
-    [:fail, message]
+  def notifier_handle_message([], message) do
+    message
   end
 
-  def make_response([:ok, message]) do
-    put_text(
-      [:ok, message],
-      "We are sending the reminders. We will try to be as annoying as possible."
-    )
+  def get_notifiers() do
+    [ SlackAsap.Core ] ++ Application.get_env(:slack_asap, :notifiers)
   end
-
-  def make_response([_, message]),
-    do: [:fail, message]
 
   def handle(params) do
-    [_status, response] = [:ok, params]
-      |> put_type()
-      |> verify_token()
-      |> make_response()
+    processed = notifier_handle_message(
+      get_notifiers(),
+      %SlackAsap.Message{:parameters => params}
+    )
 
-    response
+    %{
+      "response_type" => processed.response_type,
+      "text" => processed.text
+    }
   end
 end
