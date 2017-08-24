@@ -14,15 +14,16 @@ defmodule SlackAsap.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      applications: [:cowboy, :plug, :httpoison],
+      applications: [:bamboo, :cowboy, :plug, :httpoison],
       extra_applications: [:logger],
-      mod: {SlackAsap, [ start_server: Mix.env != :test ]}
+      mod: { SlackAsap, [ start_server: Mix.env != :test ]}
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:bamboo, "~> 0.8"},
       {:cowboy, "~> 1.0.0"},
       {:ex_twilio, "~> 0.4.0"},
       {:plug, "~> 1.0"},
