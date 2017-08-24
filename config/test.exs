@@ -2,5 +2,9 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :slack_asap, slack_interface: SlackMock
-config :slack_asap, SlackAsap.Mailer, adapter: Bamboo.TestAdapter
+config :slack_asap,
+  slack_interface: SlackMock,
+  token: "Some-token"
+
+config :slack_asap, SlackAsap.BambooEmail, adapter: Bamboo.TestAdapter,
+    email_from: "slack_asap@sophilabs.com"

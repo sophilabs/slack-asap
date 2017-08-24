@@ -2,7 +2,7 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :slack_asap, token: "K8HPzzr1WNX1i9teVoePOVIQ",
+config :slack_asap, token: "<put-value-here>",
                     port: 4000,
                     notifiers: [
                       SlackAsap.TwilioSMS,
@@ -12,18 +12,11 @@ config :slack_asap, token: "K8HPzzr1WNX1i9teVoePOVIQ",
                     slack_interface: Slack
 
 config :slack_asap, SlackAsap.BambooEmail,
-                    %{email_from: "slack_asap@sophilabs.com"}
+                      adapter: Bamboo.LocalAdapter,
+                      email_from: "some@email.com"
 
-config :slack_asap, SlackAsap.Mailer,
-                      adapter: Bamboo.MailgunAdapter,
-                      api_key: "key-3ece3fafa847a969198450ba1c7fe494",
-                      domain: "sandbox4d556973c28c4113937824f0a9826659.mailgun.org"
-
-config :ex_twilio, account_sid: {:system, "AC5584aa7573024a2e62a4e9046d78ed04"},
-                   auth_token: {:system, "497f1399531c5edaea91ffc84484d86b"}
-
-
-config :slack, api_token: "xoxb-232142658614-IIickPjzq6LsogvmI4I62KXn"
+config :slack_asap, SlackAsap.TwilioSMS,
+                      adapter: ExTwilio
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
