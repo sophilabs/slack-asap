@@ -11,7 +11,7 @@ defmodule SlackAsapTest.BambooEmail do
   test "build_email" do
     email = build("foo@example.com", "Some message")
     assert email.to == "foo@example.com"
-    assert email.from == "slack_asap@sophilabs.com"
+    assert email.from == "foo@bar.com"
     assert email.html_body =~  "Some message"
   end
 

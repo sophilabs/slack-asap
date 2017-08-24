@@ -7,4 +7,4 @@ config :slack_asap,
   token: "Some-token"
 
 config :slack_asap, SlackAsap.BambooEmail, adapter: Bamboo.TestAdapter,
-    email_from: "slack_asap@sophilabs.com"
+    email_from: "foo@bar.com"
