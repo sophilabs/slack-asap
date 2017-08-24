@@ -39,3 +39,7 @@ config :slack_asap, token: "K8HPzzr1WNX1i9teVoePOVIQ",
 
 config :ex_twilio, account_sid: {:system, "AC5584aa7573024a2e62a4e9046d78ed04"},
                    auth_token: {:system, "497f1399531c5edaea91ffc84484d86b"}
+
+
+#config :slack, api_token: "xoxp-2360007319-174436881879-227933436512-e25994edfeee823187a332e6f2ac265c"
+config :slack, api_token: "xoxb-232142658614-IIickPjzq6LsogvmI4I62KXn"
