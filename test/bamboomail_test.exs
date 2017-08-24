@@ -8,14 +8,6 @@ defmodule SlackAsapTest.BambooEmail do
 
   alias SlackAsap.Message, as: Message
 
-  test "unknown email returns nil" do
-    assert get_email("some_user") == nil
-  end
-
-  test "known email is treated ok" do
-    assert get_email("foo") == "foo@example.com"
-  end
-
   test "build_email" do
     email = build("foo@example.com", "Some message")
     assert email.to == "foo@example.com"
@@ -24,7 +16,7 @@ defmodule SlackAsapTest.BambooEmail do
   end
 
   test "handling a known user sends an email" do
-    assert %Message{parameters: %{"text" => "foo some message"}}
+    assert SlackAsapTest.Core.wellformed_message()
       |> handle()
       |> is_ok? == true
 
@@ -36,6 +28,6 @@ defmodule SlackAsapTest.BambooEmail do
       |> handle()
       |> is_ok? == true
 
-    assert_no_emails_delivered
+    assert_no_emails_delivered()
   end
 end

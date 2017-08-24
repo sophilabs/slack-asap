@@ -14,7 +14,7 @@ defmodule SlackAsap.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      applications: [:bamboo, :cowboy, :plug, :httpoison],
+      applications: [:bamboo, :cowboy, :plug, :httpoison, :ex_twilio],
       extra_applications: [:logger],
       mod: { SlackAsap, [ start_server: Mix.env != :test ]}
     ]

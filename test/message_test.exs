@@ -1,4 +1,4 @@
-defmodule SlackAsapMessageTest do
+defmodule SlackAsapTest.Message do
   use ExUnit.Case
 
   import SlackAsap.Message
@@ -74,5 +74,15 @@ defmodule SlackAsapMessageTest do
 
     assert %Message{ parameters: %{"text" => ""} }
       |> is_help?() == true
+  end
+
+  test "unknown email returns nil" do
+    assert %Message{ profile: %{} }
+      |> get_email() == nil
+  end
+
+  test "known email is treated ok" do
+    assert %Message{ profile: %{ "profile" => %{ "email" => "foo@bar.com"} }}
+      |> get_email() == "foo@bar.com"
   end
 end
