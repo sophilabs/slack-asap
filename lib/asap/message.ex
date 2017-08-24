@@ -120,7 +120,8 @@ defmodule SlackAsap.Message do
       }
   """
   def get_profile_parameter(message, parameter_name),
-    do: message.profile[parameter_name]
+    do: message.profile[parameter_name] ||
+      message.profile["profile"][parameter_name]
 
   @doc """
     Get the ASAP message parsed from the command

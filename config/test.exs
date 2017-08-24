@@ -8,3 +8,7 @@ config :slack_asap,
 
 config :slack_asap, SlackAsap.BambooEmail, adapter: Bamboo.TestAdapter,
     email_from: "foo@bar.com"
+
+config :slack_asap, SlackAsap.TwilioSMS,
+    phone_number: "0303456",
+    default_country: "AT"

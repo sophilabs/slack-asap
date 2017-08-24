@@ -2,20 +2,15 @@ defmodule SlackAsap.BambooEmail do
   use Bamboo.Mailer, otp_app: :slack_asap
   import Bamboo.Email
   import SlackAsap.Message
+  import SlackAsap.Utils
 
-  def email_from() do
-      result = Application.get_env(:slack_asap, SlackAsap.BambooEmail)
-      |> Enum.reverse
-      |> Enum.find(&match?({:email_from, _}, &1))
-
-      elem(result || [], 1)
-  end
+  @email_from get_config(SlackAsap.BambooEmail, :email_from)
 
   def build(email, message_text),
     do:
       new_email(
         to: email,
-        from: email_from(),
+        from: @email_from,
         subject: "ASAP " <> message_text,
         html_body: "<strong>" <> message_text <> "</strong>",
         text_body: message_text
