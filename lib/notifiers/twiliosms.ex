@@ -12,11 +12,11 @@ defmodule SlackAsap.TwilioSMS do
       get_profile_parameter(message, "phone") |> parse(@default_country)
 
     if status == :ok && is_valid_number?(dest_phone_number) do
-      @adapter.Message.create(%{
+      IO.inspect(@adapter.Message.create(%{
          from: @from_phone_number,
          to: format(dest_phone_number, :e164),
          body: get_asap_message(message)
-      })
+      }))
     end
     message
   end
