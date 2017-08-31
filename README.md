@@ -33,7 +33,7 @@ You receive an email too, and a SMS message (I'm using a Twilio trial account :g
 
 # Configuration
 
-The app itself requires a significant amount of variables, mostly for configuring each notifier API tokens and ids. The following fragment shows a sample `config.exs` file. The main part is the `notifiers:` array which must have the ones which want to be enabled.
+The app itself requires a significant amount of variables, mostly for configuring each notifier API tokens and ids. The following fragment shows a sample `config.exs` file. The main part is the `notifiers:` array which must have the ones which want to be enabled. The package itself comes with some basic ones that can optionally enabled.
 
 ```elixir
 
@@ -75,19 +75,26 @@ defmodule ConsoleNotifier do
     IO.puts("Hello, I'm notifying via Console: #{message.get_asap_message()}")
     message
   end
-end```
+end
+```
 
-If you want to define a new notifier
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `slack_asap` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `slack_asap` to your list of dependencies in `mix.exs`, and don't forget to add the applications, which depends on the notifiers you will run. The following example shows the basic packages needed to be included for the notifiers built into the Slack ASAP package.
 
 ```elixir
 def deps do
   [
     {:slack_asap, github: "sophilabs/slack-asap"}
+  ]
+end
+
+def application do
+  [
+    applications: [:bamboo, :cowboy, :plug, :httpoison, :ex_twilio, :ex_phone_number],
+    extra_applications: [:logger],
+    mod: { SlackAsap, [ start_server: Mix.env != :test ]}
   ]
 end
 ```
