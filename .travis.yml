@@ -1,3 +1,21 @@
+sudo: required
 language: elixir
+
+services:
+  - docker
 elixir:
   - 1.5.1
+
+before_install:
+- docker build -t sophilabs/slack-asap .
+- docker ps -a
+- docker run sophilabs/slack-asap mix test
+
+script:
+  mix test
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker push sophilabs/slack-asap;
+    fi
