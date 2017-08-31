@@ -26,7 +26,7 @@ In the picture below I'm sending an `/asap` message to myself.
 
 ![Send message typing](docs/send.gif)
 
-You receive an email too, and a SMS message (I'm using a Twilio trial account :grin:)
+You receive an email too, and a SMS message.
 
 ![Receive message notification](docs/email.gif)
 ![Receive message notification](docs/sms.png)
@@ -117,7 +117,7 @@ This project shows how easy it is to make a Slack command in Elixir that can sol
 
 ## License
 
-PySchool is MIT Licensed. Copyright (c) 2017 Sophilabs, Inc.
+Slack ASAP is MIT Licensed. Copyright (c) 2017 Sophilabs, Inc.
 
 
 ## Credits
