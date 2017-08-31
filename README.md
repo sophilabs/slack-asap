@@ -117,7 +117,7 @@ This project shows how easy it is to make a Slack command in Elixir that can sol
 
 ## License
 
-PySchool is MIT Licensed. Copyright (c) 2017 Sophilabs, Inc.
+Slack ASAP is MIT Licensed. Copyright (c) 2017 Sophilabs, Inc.
 
 
 ## Credits
