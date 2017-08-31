@@ -25,7 +25,8 @@ defmodule SlackAsap.Command do
 
     %{
       "response_type" => processed.response_type,
-      "text" => processed.text
+      "text" => processed.text,
+      "attachments" => processed.attachments
     }
   end
 end

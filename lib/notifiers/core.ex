@@ -4,7 +4,14 @@ defmodule SlackAsap.Core do
   @slack_interface Application.get_env(:slack_asap, :slack_interface)
 
   @ack_message "We are sending the reminders. We will try to be as annoying as possible."
-  @usage_message "/asap username message"
+  @usage_message ":wave: Need some help with `/asap`?
+
+Use `/asap` to message a user about an urgent message:
+`/asap @luis The food arrived`
+`/asap @jessica Someone is looking for you`
+`/asap @peter Nobody likes U`"
+
+  @usage_attachment "If you liked the command, check out the code in https://github.com/sophilabs/slack_asap"
 
   def verify_token(message) do
     if get_parameter(message, "token") == Application.get_env(:slack_asap, :token) do
@@ -20,6 +27,7 @@ defmodule SlackAsap.Core do
         message |> put_text(@ack_message)
       else
         message |> put_text(@usage_message)
+                |> add_text_attachment(@usage_attachment)
       end
     else
       message
