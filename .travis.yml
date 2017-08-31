@@ -9,7 +9,6 @@ elixir:
 before_install:
 - docker build -t sophilabs/slack-asap .
 - docker ps -a
-- docker run sophilabs/slack-asap mix test
 
 script:
   mix test
