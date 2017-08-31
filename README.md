@@ -1,5 +1,7 @@
 # Slack ASAP
 
+[![Build Status](https://travis-ci.org/sophilabs/slack-asap.svg?branch=master)](https://travis-ci.org/sophilabs/slack-asap)
+
 ![Logo](docs/asap.png)
 
 Slack ASAP is an Slack Slash Command we use at [Sophilabs](https://sophilabs.co) to notify our coworkers about things *as soon as possible*. The command will send the contact SMS messages, emails and Slack private messages. It can be configured to add more *notifiers*, or even remove them.
