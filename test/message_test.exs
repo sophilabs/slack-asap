@@ -22,6 +22,16 @@ defmodule SlackAsapTest.Message do
     assert put_text(%Message{}, "something").text == "something"
   end
 
+  test "Empty message has no attachments" do
+      assert Enum.empty?(%Message{}.attachments) == true
+  end
+
+  test "Adds a text attachment" do
+      message = %Message{} |> add_text_attachment("Hello")
+      assert Enum.empty?(message.attachments) == false
+      assert Enum.at(message.attachments, 0) == %{ text: "Hello" }
+  end
+
   test "put_type should put the type" do
     assert put_type(%Message{}, :in_channel).response_type == "in_channel"
     assert put_type(%Message{}, :ephemeral).response_type == "ephemeral"

@@ -4,7 +4,8 @@ defmodule SlackAsap.Message do
       text: "",
       response_type: "in_channel",
       parameters: %{},
-      profile: %{}
+      profile: %{},
+      attachments: []
   ]
 
   # A message @<user> <message>
@@ -129,6 +130,11 @@ defmodule SlackAsap.Message do
   def get_asap_message(message) do
     captures = Regex.named_captures(@regular_regex, message.parameters["text"])
     captures && captures["message"]
+  end
+
+  def add_text_attachment(message, text) do
+    new_attachments = message.attachments ++ [%{ text: text }]
+    %{ message | attachments: new_attachments }
   end
 
   @doc """
