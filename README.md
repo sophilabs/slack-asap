@@ -74,7 +74,7 @@ A notifier is a module that defines a `handle(Message) :: Message` function that
 ```elixir
 defmodule ConsoleNotifier do
   def handle(message) do
-    IO.puts("Hello, I'm notifying via Console: #{message.get_asap_message()}")
+    IO.puts("Hello, I'm notifying via Console: #{get_asap_message(message)}")
     message
   end
 end
