@@ -8,10 +8,10 @@ defmodule SlackAsapTest.BambooEmail do
   alias SlackAsap.Message, as: Message
 
   test "build_email" do
-    email = build("foo@example.com", "Some message")
+    email = build(SlackAsapTest.Core.wellformed_message())
     assert email.to == "foo@example.com"
     assert email.from == "foo@bar.com"
-    assert email.html_body =~ "Some message"
+    assert email.html_body =~ "message"
   end
 
   test "handling a known user sends an email" do

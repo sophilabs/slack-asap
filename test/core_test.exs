@@ -14,7 +14,7 @@ defmodule SlackAsapTest.Core do
   """
   def wellformed_message() do
     message = %Message{
-      parameters: %{ "token" => @right_token, "text" => "foo mesage" }
+      parameters: %{ "token" => @right_token, "text" => "foo message" }
     }
     message |> handle()
   end
