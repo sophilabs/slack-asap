@@ -34,8 +34,18 @@ Use `/asap` to message a user about an urgent message:
     end
   end
 
+  defp validate_list(%{ "error" => errorReason } = response) do
+    IO.puts(:stderr, "Warning: Error when calling Slack List: #{errorReason}")
+    response
+  end
+
+  defp validate_list(response), do:
+    response
+
   defp get_profile(username),
-    do: @slack_interface.Web.Users.list()["members"]
+    do: @slack_interface.Web.Users.list()
+      |> validate_list()
+      |> Map.get("members", [])
       |> Enum.find(fn(user) -> user["name"] == username end)
 
   def put_profile_info(message) do
